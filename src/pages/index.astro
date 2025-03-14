@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro"
 
-import { db, Lyrics } from 'astro:db';
+import { db, Artist, Lyrics, eq } from 'astro:db';
 
-const lyricsArray = await db.select().from(Lyrics);
+const lyricsArray = await db.select()
+  .from(Lyrics)
+  .innerJoin(Artist, eq(Lyrics.artistId, Artist.id));
 ---
 <Layout>
 <h1 class="text-6xl text-blue-500">Lilycs</h1>
@@ -11,9 +13,10 @@ const lyricsArray = await db.select().from(Lyrics);
 <h2>Litte lyrics:</h2>
 
 {
-  lyricsArray.map(({ text }) => (
+  lyricsArray.map(({ Lyrics, Artist }) => (
     <article>
-      <p>{text}</p>
+      <p>{Lyrics.text}</p>
+      <p>~~ {Artist.name}</p>
     </article>
   ))
 }
