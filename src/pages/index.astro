@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Header from "../components/Header.svelte"
+import Lilycs from "../components/Lilycs.svelte"
 
 import { db, Artist, Lyrics, eq } from 'astro:db';
 
@@ -8,16 +10,12 @@ const lyricsArray = await db.select()
   .innerJoin(Artist, eq(Lyrics.artistId, Artist.id));
 ---
 <Layout>
-<h1 class="text-6xl text-blue-500">Lilycs</h1>
-
-<h2>Litte lyrics:</h2>
-
-{
-  lyricsArray.map(({ Lyrics, Artist }) => (
-    <article>
-      <p>{Lyrics.text}</p>
-      <p>~~ {Artist.name}</p>
-    </article>
-  ))
-}
+  <Header/>
+  <section class="flex flex-col-reverse">
+  {
+    lyricsArray.map(({ Lyrics, Artist }) => (
+      <Lilycs artist={Artist.name} lyrics={Lyrics.text} />
+    ))
+  }
+  </section>
 </Layout>
