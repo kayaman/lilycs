@@ -26,10 +26,13 @@
   "dependencies": {
     "@astrojs/db": "^0.14.8",
     "@astrojs/node": "^9.1.3",
+    "@astrojs/svelte": "^7.0.6",
     "@astrojs/vercel": "^8.1.2",
     "@tailwindcss/vite": "^4.0.14",
     "astro": "^5.5.2",
-    "tailwindcss": "^4.0.14"
+    "svelte": "^5.23.0",
+    "tailwindcss": "^4.0.14",
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
