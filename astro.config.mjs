@@ -9,13 +9,15 @@ import node from '@astrojs/node';
 
 import vercel from '@astrojs/vercel';
 
+import svelte from '@astrojs/svelte';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [db()],
+  integrations: [db(), svelte()],
 
   adapter: vercel()
 });
